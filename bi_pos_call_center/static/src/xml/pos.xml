@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	<t t-name="OrderlineNote" owl="1">
+        <div class='control-button odoo-theme-color'>
+            <i class='fa fa-tag' /> Line Note
+        </div>
+    </t>
+
+    <t t-name="Orderlist" owl="1">
+        <span class="control-button odoo-theme-color">
+            <i class="fa fa-university"></i>
+            <span>Orders</span>
+        </span>
+    </t>
+
+    <t t-name="TransferOrderButton" owl="1">
+        <div class='control-button odoo-theme-color'>
+           <i class="fa fa-paper-plane" aria-hidden="true"></i> Transfer Order
+        </div>
+    </t>
+
+    <t t-name="ReceiveOrderButton" owl="1">
+        <div class='control-button odoo-theme-color'>
+           <i class="fa fa-get-pocket" aria-hidden="true"></i> Received Order
+        </div>
+    </t>
+    <t t-name="OrderlineNotePopupWidget" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <Draggable>
+                <div class="popup popup-textarea">
+                    <header class="title drag-handle">
+                        <t t-esc="props.title" />
+                    </header>
+                    <main class="body" style="height: 270px;">
+                        <textarea t-model="state.inputValue" t-ref="input"></textarea>
+                        <div>
+                            <t t-if="props.order_line_note">
+                                <t t-foreach='props.order_line_note' t-as='line' t-key='line.id'>
+                                    <div class="button" t-on-click="line_button"><t t-esc="line.name"/></div>
+                                </t>
+                            </t>
+                        </div>
+                    </main>
+                    <footer class="footer">
+                        <div class="button confirm" t-on-click="confirm">
+                            Ok
+                        </div>
+                        <div class="button cancel" t-on-click="cancel">
+                            Cancel
+                        </div>
+                    </footer>
+                </div>
+            </Draggable>
+        </div>
+    </t>
+  
+    <t t-name="Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension" owl="1">
+        <xpath expr="//ul[hasclass('info-list')]" position="inside">
+            <t t-if="props.line.get_line_note()">
+                <li class="info orderline-note">
+                    <i class="fa fa-tag" role="img" aria-label="Note" title="Note"/>
+                    <t t-esc="props.line.get_line_note()" />
+                </li>
+            </t>
+        </xpath>
+    </t>
+
+    <t t-name="CreateTransferOrderPopupWidget" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <Draggable>
+                <div class="popup" style="text-align:center;">
+                    <header class="title drag-handle">
+                        Transfer Order
+                    </header>
+                    <main class="body traceback" style="font-family: 'Lato-Reg';text-align: center;min-height: 415px;margin-left: 60px;">
+                        <div class="body touch-scrollable scrollable-y" >
+                            <div class="create_wrapper">
+                                <table id="create_coupon_table" class="table">
+                                    <tr>
+                                        <td>
+                                            <span>Order Date</span>
+                                            <span>
+                                                <input style="margin:8px auto;min-width: 86%   ;    min-height: 40px;" class="send_order_date" type="datetime-local"/>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <br/>
+                                    <tr>
+                                        <td>
+                                            <span>Order Note</span>
+                                            <span>
+                                                <input style="margin:8px auto;min-width: 86%   ;    min-height: 40px;" class="order_note" type="text"/>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <br/>
+                                    <tr>
+                                        <td>
+                                            <span>Order Branch</span>
+                                            <span>
+                                                <select style="margin:8px auto;min-width: 86%   ;    min-height: 40px;" class="order_session">
+                                                     <t t-if="env.pos.sessions">
+                                                        <t t-foreach="env.pos.sessions" t-as="session" t-key="session.id">
+                                                            <option t-att-value="session.id">
+                                                                <t t-esc="session.name" />
+                                                            </option>
+                                                        </t>
+                                                    </t>
+                                                </select>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <br/>
+                                    <tr>
+                                        <td>
+                                            <span>Order Priority</span>
+                                            <select style="margin:8px auto;min-width: 86%   ;    min-height: 40px;" class="order_priorty">
+                                                <option value="0">Low</option>
+                                                <option value="1">Normal</option>
+                                                <option value="2">Urgent</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <br/>
+                                </table>
+                            </div>
+                        </div>
+                    </main>
+                    <footer class="footer">
+                        <div class="button odoo-theme-button" t-on-click="send_order">
+                            Send Order
+                        </div>
+                        <div class="button odoo-theme-button" t-on-click="print_send_order">
+                            Send and Print 
+                        </div>
+                        <div class="button cancel odoo-theme-button" t-on-click="cancel">
+                            Close
+                        </div>
+                    </footer>
+                </div>
+            </Draggable>
+        </div>
+    </t>
+
+
+    <t t-name="OrdersScreen" owl="1">
+        <div class="partnerlist-screen screen">
+            <div class="screen-content orders-screen">
+                <div class="top-content">
+                    <div class="button back odoo-theme-color" t-on-click="back">
+                        <t t-if="!env.isMobile">Discard</t>
+                        <t t-else="">
+                            <i class="fa fa-undo"></i>
+                        </t>
+                    </div>
+                </div>
+                <section class="full-content">
+                    <div class="partner-window">
+                        <section class="subwindow collapsed">
+                            <div class="subwindow-container collapsed">
+                            </div>
+                        </section>
+                        <section class="subwindow list">
+                            <div class="subwindow-container">
+                                <div  class="subwindow-container-fix scrollable-y">
+                                    <table class="partner-list">
+                                        <thead>
+                                            <tr class="odoo-theme-color">
+                                                <th>Order Ref.</th>
+                                                <th t-if="!env.isMobile">Customer Name</th>
+                                                <th t-if="!env.isMobile">Date</th>
+                                                <th>Total amount</th>
+                                                <th>Branch</th>
+                                                <th>State</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="partner-list-contents">
+                                            <t t-foreach="call_orders" t-as="order"
+                                               t-key="order.id">
+                                                <CallOrderLine order="order"
+                                                            selectedCallOrder="state.selectedCallOrder"/>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </t>
+    <t t-name="CallOrderLine" owl="1">
+        <tr class='partner-line' t-att-data-id='props.order.id'>
+            <td><t t-esc='props.order.name'/></td>
+            <td><t t-if="props.order.partner_id"><t t-esc='props.order.partner_id[1]' /></t></td>
+            <td><t t-esc='props.order.delivery_date' /></td>
+            <td><t t-esc='env.pos.format_currency(props.order.amount_total)' /></td>
+            <td><t t-esc="props.order.branch_id[1]"/></td>
+            <td><t t-esc="props.order.state"/></td>
+        </tr>
+    </t>
+    <t t-name="PosCallOrdersDetail" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <Draggable>
+                <div class="popup bi-popup-width">
+                    <header class="title drag-handle">
+                        Order Details
+                    </header>
+                    <main class="body traceback" style="font-family: 'Lato-Reg';">
+                        <t t-set="order" t-value="props.order || []"/>
+                        <table style='width:100%'>
+                            <tr class="popup-tr">
+                                <td style='width:20%; '><strong>Order Ref:</strong>
+                                </td>
+                                <td style='width:30%; '>
+                                    <span t-esc="order['name']"/>
+                                </td>
+                                <td style='width:20%; '><strong>Delivery Date</strong>
+                                </td>
+                                <td style='width:30%; '>
+                                    <span t-esc="get_order_date(order['delivery_date'])" />
+                                </td>
+                            </tr>
+                            <tr class="popup-tr">
+                                <td style='width:20%; '><strong>Customer:</strong>
+                                </td>
+                                <td style='width:30%; '
+                                    t-if="order['partner_name']">
+
+                                    <span t-esc="order['partner_name'] or ''"/>
+
+                                </td>
+                                <td style='width:20%; '><strong>Total Amount:</strong>
+                                </td>
+                                <td style='width:30%; '>
+                                    <span t-esc="env.pos.format_currency(order['amount_total'])" />
+                                </td>
+                            </tr>
+                            <tr class="popup-tr">
+                                <td style='width:20%; '><strong>Priority</strong>
+                                </td>
+                                <td style='width:30%; '>
+                                    <t t-if="order['priority'] == 0">
+                                        <span>Low</span>
+                                    </t>
+                                    <t t-if="order['priority'] == 1">
+                                        <span>Normal</span>
+                                    </t>
+                                    <t t-if="order['priority'] == 2">
+                                        <span>Urgent</span>
+                                    </t>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table style='width:100%'>
+                            <thead>
+                                <tr class="orderline-table-head">
+                                    <th style='width:25%; padding-left: 10px; '>Product</th>
+                                    <th style='width:25%; padding-left: 10px; '>Quantity</th>
+                                    <th style='width:25%; padding-left: 10px; '>Note</th>
+                                    <th style='width:25%; padding-left: 10px; '>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="orderline-table" t-foreach="order['lines'] || []" t-as="line1" 
+                                    t-key="line1.product_id">
+                                    <td style='width:25%; padding-left: 10px; '><span t-esc='line1.product_name' /></td>
+                                    <td style='width:25%; padding-left: 10px; '><span t-esc='line1.qty' /></td>
+                                    <td style='width:25%; padding-left: 10px; '><span t-esc="line1.note or ''" /></td>
+                                    <td style='width:25%; padding-left: 10px; '><span t-esc='line1.price_unit' /></td>
+                                </tr>
+                               
+                            </tbody>
+                        </table>
+                        <br/>
+                        <table style='width:100%'>
+                            <span style="font-family: 'Lato-Reg';font-size: 20px;font-weight: bold;">Order Transfer</span>
+                            <br/>
+                            <br/>
+                            <tr>
+                                <td>
+                                    <select style="font-size: 20px; width:30%;" class="transfer_call_order">
+                                        <option value="0"></option>
+                                        <t t-if="env.pos.sessions">
+                                            <t t-foreach="env.pos.sessions" t-as="session1" t-key="session1.id">
+                                                <option t-att-value="session1.id">
+                                                    <t t-esc="session1.name" />
+                                                </option>
+                                            </t>
+                                        </t>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </main>
+                    <footer class="footer">
+                        <div class="button cancel odoo-theme-color" t-on-click="cancel">
+                            Close
+                        </div>
+                        <div class="button transfer odoo-theme-color" t-att-data-id="order['id']" t-on-click="transfer_order">
+                            Transfer
+                        </div>
+                        <div class="button deliver odoo-theme-color" t-on-click="() => this.trigger('deliver-order', order['id'])">
+                            Deliver
+                        </div>
+                    </footer>
+                </div>
+            </Draggable>
+        </div>
+    </t>
+     <t t-name="ReceiveScreenWidget" owl="1">
+        <div class="partnerlist-screen screen">
+            <div class="screen-content orders-screen">
+                <div class="top-content">
+                    <div class="button back odoo-theme-color" t-on-click="back">
+                        <t t-if="!env.isMobile">Discard</t>
+                        <t t-else="">
+                            <i class="fa fa-undo"></i>
+                        </t>
+                    </div>
+                </div>
+                <section class="full-content">
+                    <div class="partner-window">
+                        <section class="subwindow collapsed">
+                            <div class="subwindow-container collapsed">
+                            </div>
+                        </section>
+                        <section class="subwindow list">
+                            <div class="subwindow-container">
+                                <div  class="subwindow-container-fix scrollable-y">
+                                    <table class="partner-list">
+                                        <thead>
+                                            <tr class="odoo-theme-color">
+                                                <th>Order Ref.</th>
+                                                <th t-if="!env.isMobile">Customer Name</th>
+                                                <th t-if="!env.isMobile">Date</th>
+                                                <th>Total amount</th>
+                                                <th>Priority</th>
+                                                <th>Receipt</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="partner-list-contents">
+                                            <t t-foreach="receive_orders" t-as="r_order"
+                                               t-key="r_order.id">
+                                                <ReceiveOrderLine order="r_order"
+                                                            selectedReceiveOrder="state.selectedReceiveOrder"
+                                                            onClickShowOrder.bind="showDetails"/>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </t>
+    <t t-name="ReceiveOrderLine" owl="1">
+        <tr class='partner-line' t-att-data-id='props.order.id'>
+            <td t-att-data-id='props.order.id' 
+                t-on-click.stop="() => props.onClickShowOrder(props.order)"
+                ><t t-esc='props.order.name'/></td>
+            <td t-att-data-id='props.order.id' 
+                t-on-click.stop="() => props.onClickShowOrder(props.order)"><t t-if="props.order.partner_name"><t t-esc='props.order.partner_name' /></t></td>
+            <td t-att-data-id='props.order.id' 
+                t-on-click.stop="() => props.onClickShowOrder(props.order)"><t t-esc="get_order_date(props.order.delivery_date)" /></td>
+            <td t-att-data-id='props.order.id' 
+                t-on-click.stop="() => props.onClickShowOrder(props.order)"><t t-esc="env.pos.format_currency(props.order.amount_total)" /></td>
+            <t t-if="props.order.priority == 0">
+                <td>Low</td>
+            </t>
+            <t t-if="props.order.priority == 1">
+                <td>Normal</td>
+            </t>
+            <t t-if="props.order.priority == 2">
+                <td>Urgent</td>
+            </t>
+            <td class="print-order" t-att-data-id='props.order.id' 
+                t-on-click="() => this.trigger('click-reprint', props.order)">
+                <button class="odoo-theme-button"><i class="fa fa-print"></i>Print</button>
+            </td>
+        </tr>
+    </t>
+
+    <t t-name="ReceiveOrderPrint" owl="1">
+        <div class="receipt-screen screen">
+            <div class="screen-content">
+                <div class="top-content">
+                    <span class="button back" t-on-click="back">
+                        <i class="fa fa-angle-double-left"></i>
+                        <span> </span>
+                        <span>Back</span>
+                    </span>
+                    <div class="top-content-center">
+                        <h1> Reprint Order</h1>
+                    </div>
+                    <span class="button next highlight" t-on-click="back">
+                        <span>Ok</span>
+                        <span> </span>
+                        <i class="fa fa-angle-double-right"></i>
+                    </span>
+                </div>
+                <div class="centered-content">
+                    <div class="button print" t-on-click="printReceipt">
+                        <i class="fa fa-print"></i>
+                        <span> </span>
+                        <span>Print</span>
+                    </div>
+                    <div class="pos-receipt-container" t-ref="order-receipt">
+                        <ReceiveOrderReceipt 
+                            order="props.order"
+                            discount = "props.discount"
+                            orderlines = "props.orderlines"
+                            subtotal = "props.subtotal" 
+                            tax = "props.tax"   
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="ReceiveOrderReceipt" owl="1">
+        <div class="pos-receipt">
+            <t t-if="env.pos.company.logo">
+                <img class="pos-receipt-logo" t-att-src="env.pos.company.logo" alt="Logo"/>
+                <br/>
+            </t>
+            <div class="pos-receipt-contact">
+                <t t-if="env.pos.company.contact_address">
+                    <div><t t-esc="env.pos.company.contact_address" /></div>
+                </t>
+                <t t-if="env.pos.company.phone">
+                    <div>Tel:<t t-esc="env.pos.company.phone" /></div>
+                </t>
+                <t t-if="env.pos.company.vat">
+                    <div><t t-esc="env.pos.company.vat_label"/>:<t t-esc="env.pos.company.vat" /></div>
+                </t>
+                <t t-if="env.pos.company.email">
+                    <div><t t-esc="env.pos.company.email" /></div>
+                </t>
+                <t t-if="env.pos.company.website">
+                    <div><t t-esc="env.pos.company.website" /></div>
+                </t>
+                <t t-if="env.pos.header_html">
+                    <t t-out="env.pos.header_html" />
+                </t>
+                <t t-if="!env.pos.header_html and env.pos.header">
+                    <div style="white-space:pre-line"><t t-esc="env.pos.header" /></div>
+                </t>
+            </div>
+            <br /><br />
+
+
+            <div class='orderlines'>
+                <t t-foreach='props.orderlines' t-as='line' t-key="line.id">
+                    
+                    <t t-set='simple' t-value='(line.discount === 0 and line.qty === 1)' />
+                    <div t-if='simple'>
+                        <t t-esc="line.product_name"/>
+                        <span t-esc='env.pos.format_currency_no_symbol(line.total_price)' class="price_display pos-receipt-right-align"/>
+                    </div>
+                    <t t-if='!simple'>
+                        <div t-esc='line.product_name'/>
+                        <t t-if='line.discount !== 0'>
+                            <div class="pos-receipt-left-padding">
+                                <t t-esc="env.pos.format_currency_no_symbol(line.price_unit)"/>
+                            </div>
+                            <div class="pos-receipt-left-padding">
+                                Discount: <t t-esc='line.discount' />%
+                            </div>
+                        </t>
+                        <div class="pos-receipt-left-padding">
+                            <t t-esc="Math.round(line.qty)"/>
+                            x
+                            <t t-esc='env.pos.format_currency_no_symbol(line.total_price/line.qty)' />
+                            <span class="price_display pos-receipt-right-align">
+                                <t t-esc='env.pos.format_currency_no_symbol(line.total_price)'/>
+                            </span>
+                        </div>
+                    </t>
+                </t>
+            </div>
+
+            <div class="pos-receipt-right-align">--------</div>
+            <br/>
+            <div class="pos-receipt-amount">
+                TOTAL
+                <span t-esc="env.pos.format_currency(props.order.amount_total)" class="pos-receipt-right-align"/>
+            </div>
+            <br/><br/>
+
+            <t t-if="props.discount">
+                <div>
+                    Discounts
+                    <span t-esc="env.pos.format_currency(props.discount)" class="pos-receipt-right-align"/>
+                </div>
+            </t>
+            <div class='before-footer' />
+            <br/>
+            <div class="pos-receipt-order-data">
+                <div><t t-esc='props.order.pos_reference' /></div>
+                <div><t t-esc='props.order.date_order' /></div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="TransferOrderReceipt" owl="1">
+        <div class="receipt-screen screen">
+            <div class="screen-content">
+                <div class="top-content">
+                    <div class="top-content-center">
+                        <h1>Transfer Order Receipt</h1>
+                    </div>
+                    <span class="button next highlight" t-on-click="confirm">
+                        <span>Ok</span>
+                        <span> </span>
+                        <i class="fa fa-angle-double-right"></i>
+                    </span>
+                </div>
+                <div class="centered-content">
+                    <div class="button print" t-on-click="printReceipt">
+                        <i class="fa fa-print"></i>
+                        <span> </span>
+                        <span>Print</span>
+                    </div>
+                    <div class="pos-receipt-container" t-ref="order-receipt">
+                        <OrderReceipt order="currentOrder" isBill="true" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="BiOrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('after-footer')]" position="after">
+            <br/>
+            <t t-if="props.order.call_order_id">
+                Order Ref: <t t-esc="props.order.call_order_id"/>
+            </t>
+            <br/>
+        </xpath>
+    </t>
+</templates>

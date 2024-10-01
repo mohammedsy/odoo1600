@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="pos_call_order_action" model="ir.actions.act_window">
+            <field name="name">POS Call Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.call.order</field>
+            <field name="view_mode">tree,form</field>                   
+        </record>
+
+
+        <record id="pos_call_order_view_form" model="ir.ui.view">
+            <field name="name">pos.call.order.form</field>
+            <field name="model">pos.call.order</field>
+            <field name="arch" type="xml">
+                <form string="Quotations" edit="0" create="0">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                    </header>
+                    <sheet>
+                    <group col="4" colspan="4" name="order_fields">
+                        <field name="name"/>
+                        <field name="delivery_date"/>
+                        <field name="partner_id"/>
+                        <field name="pricelist_id"/>
+                        <field name="branch_id" domain="[('is_branch','=',True)]"/>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Products">
+                            <field name="lines" colspan="4" nolabel="1" >
+                                <tree string="Quotations lines" editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="extra_note"/>
+                                    <field name="qty"/>
+                                    <field name="price_unit" widget="monetary"/>
+                                    <field name="discount" widget="monetary"/>
+                                    <field name="tax_ids"/>
+                                    <field name="price_subtotal" widget="monetary"/>
+                                    <field name="price_subtotal_incl" widget="monetary"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right" colspan="2" name="order_total">
+                                <field name="amount_tax" widget="monetary"/>
+                                <div class="oe_subtotal_footer_separator oe_inline">
+                                    <label for="amount_total" />
+                                </div>
+                                <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary"/>
+                            </group>
+                            <div class="oe_clear"/>
+                        </page>
+                        <page string="Notes" >
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </sheet>               
+                </form>
+            </field>
+        </record>               
+        <record id="pos_call_order_view_tree" model="ir.ui.view">
+            <field name="name">pos.call.order.tree</field>
+            <field name="model">pos.call.order</field>
+            <field name="arch" type="xml">
+                <tree string="Quotations" create="0">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="amount_total" sum="Amount total" widget="monetary"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+       <menuitem name="POS Call Orders" id="menu_pos_call_orders" parent="point_of_sale.menu_point_of_sale" 
+        action="pos_call_order_action" sequence="2"/>
+    </data>
+</odoo>
