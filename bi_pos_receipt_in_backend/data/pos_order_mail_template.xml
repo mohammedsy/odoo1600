@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="pos_sale_order_email_template" model="mail.template">
+            <field name="name">POS Order - Send by Email</field>
+            <field name="model_id" ref="bi_pos_receipt_in_backend.model_pos_order"/>
+            <field name="subject">POS Order Receipt</field><field name="email_from">{{ (object.user_id.email_formatted or user.email_formatted) }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="report_template" ref="bi_pos_receipt_in_backend.receipt_entry_report_id"/>
+            <field name="report_name">{{ object.name }}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 10px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Hello, <t t-out="object.partner_id.name"/>
+                    </p>
+                    Here is your order from <t t-out="object.company_id.name or ''"/>
+                    <br/>
+                    <p style="margin-left: 5%;border-left: solid 2px darkred;">
+                        <strong>&amp;nbsp;&amp;nbsp;REFERENCES</strong><br/>
+                        <strong>&amp;nbsp;&amp;nbsp;Order Number : &amp;nbsp;&amp;nbsp;</strong><t t-out="object.name"/><br/>
+                        <strong>&amp;nbsp;&amp;nbsp;Order Total : &amp;nbsp;&amp;nbsp;</strong><t t-out="object.amount_total"/><br/>
+                        <strong>&amp;nbsp;&amp;nbsp;Order Date : &amp;nbsp;&amp;nbsp;</strong><t t-out="object.date_order"/><br/>
+                        <strong>&amp;nbsp;&amp;nbsp;Order Reference : &amp;nbsp;&amp;nbsp;</strong><t t-out="object.pos_reference"/><br/>
+                        <strong>&amp;nbsp;&amp;nbsp;Your Contact : &amp;nbsp;&amp;nbsp;</strong><t t-out="object.user_id.name"/><br/>
+                    </p>
+                    <p>If you have any questions, do not hesitate to contact us.</p>
+                    <p>Thank you for choosing <t t-out="object.company_id.name or 'us'"/> </p>
+                    <div/>
+                    <p style="background: rgba(0, 0, 0, 0.05);width: 50%;">
+                        <t t-out="object.company_id.name"/><br/>
+                        <t t-out="object.company_id.partner_id.name"/>&amp;nbsp;&amp;nbsp;
+                        <t t-out="object.company_id.street"/>&amp;nbsp;&amp;nbsp;
+                        <t t-out="object.company_id.street2"/><br/>
+                        <t t-out="object.company_id.city"/>&amp;nbsp;&amp;nbsp;
+                        <t t-out="object.company_id.state_id.name"/>&amp;nbsp;&amp;nbsp;
+                        <t t-out="object.company_id.country_id.name"/><br/>
+                        <strong>Phone :&amp;nbsp;&amp;nbsp;</strong> <t t-out="object.company_id.phone"/><br/>
+                        <strong>Website : &amp;nbsp;&amp;nbsp;</strong><t t-out="object.company_id.website"/>
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>
