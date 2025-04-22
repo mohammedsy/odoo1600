@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="wizard_payments_report_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-set="company" t-value="env.company"/>
+                    <div class="mt-5">
+                        <div class="page">
+                            <div class="h1 text-center">
+                                <span>Session Balances Report</span>
+                            </div>
+                            <br/>
+                            <div t-if="filter_by" class="d-flex align-items-center justify-content-center text-center w-100">
+                                <div class="h5 text-center" style="width: 50% !important;" t-if="date_from">
+                                    <strong>Start Date</strong>
+                                    <span> : </span>
+                                    <span t-esc="date_from"/>
+                                </div>
+                                <div class="h5 text-end" style="width: 35% !important;" t-if="date_to">
+                                    <strong>End Date </strong>
+                                    <span> : </span>
+                                    <span t-esc="date_to"/>
+                                </div>
+                            </div>
+                            <br/>
+
+                            <t t-set="report_total" t-value="0"/>
+                            <t t-foreach="payments" t-as="table">
+                                <h4><t t-esc="table['title']" /></h4>
+                                <table class="table table-sm o_main_table" name="pos_payments_table">
+                                    <thead>
+                                        <tr>
+                                            <th name="th_cashier" class="text-center"><span>Cashier</span></th>
+                                            <th name="th_method" class="text-center"><span>Payment Method</span></th>
+                                            <th name="th_amount" class="text-center"><span>Amount</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="invoice_tbody">
+                                        <t t-set="table_total" t-value="0"/>
+                                        <t t-foreach="table['payments']" t-as="payment">
+                                            <tr>
+                                                <td class="text-center">
+                                                    <t t-esc="payment['cashier']" />
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-esc="payment['method']" />
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-esc="payment['amount']" t-options='{"widget": "monetary", "display_currency": company.currency_id}'/>
+                                                </td>
+                                            </tr>
+                                            <t t-set="table_total" t-value="table_total + payment['amount']"/>
+                                        </t>
+                                        <tr>
+                                            <th colspan="2" class="text-center">
+                                                <span>Total</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <t t-esc="table_total" t-options='{"widget": "monetary", "display_currency": company.currency_id}'/>
+                                            </th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <t t-set="report_total" t-value="table_total + report_total"/>
+                                <br/>
+                            </t>
+                            <div class="h3 float-end pe-5">
+                                <strong>Total </strong>
+                                <span> : </span>
+                                <span t-esc="report_total" t-options='{"widget": "monetary", "display_currency": company.currency_id}'/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <record id="wizard_payments_report_action" model="ir.actions.report">
+            <field name="name">Payments Report</field>
+            <field name="model">payment.report.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">pos_payment.wizard_payments_report_template</field>
+            <field name="report_file">pos_payment.wizard_payments_report_template</field>
+            <field name="groups_id" eval="[(4, ref('point_of_sale.group_pos_manager'))]"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pos_payment.PaymentPopup" owl="1">
+                <div class="popup">
+                    <header class="header cash-move">
+                        <div>
+                            <span>Customer Payment</span>
+                        </div>
+                    </header>
+                    <main class="body">
+                        <div class="cash-move">
+                            <div class="input-amount d-flex align-items-center">
+                                <div class="input-type gap-2 d-flex align-items-center"
+                                    t-att-class="{
+                                        'decentered': isLongName,
+                                        'highlight': state.partner
+                                    }"
+                                    t-on-click="selectPartner">
+                                    <i class="fa fa-user" role="img" title="Customer" />
+                                    <span>
+                                        <t t-if="state.partner">
+                                            <t t-esc="state.partner.name" />
+                                        </t>
+                                        <t t-if="!state.partner">
+                                            Customer
+                                        </t>
+                                    </span>
+                                </div>
+
+                                <div class="input-field" t-on-input="handleInputChange">
+                                    <input type="text" name="amount" t-ref="input-amount-ref" t-on-keypress="_onAmountKeypress" t-model="state.inputAmount"/>
+                                    <t t-if="env.pos.currency.symbol.length > 1">
+                                        <span class="left-currency" t-esc="env.pos.currency.symbol" />
+                                    </t>
+                                    <t t-else="">
+                                        <span class="currency" t-esc="env.pos.currency.symbol" />
+                                    </t>
+                                </div>
+                            </div>
+                            <div class="paymentmethods">
+                                <p class="title-category">Payment Method</p>
+                                <div class="input-amount d-flex align-items-center">
+                                    <t t-foreach="payment_methods_from_config" t-as="paymentMethod" t-key="paymentMethod.id">
+                                        <div class="input-type payment-method" style="text-align: center !important;"
+                                            t-on-click="()=> this.selectPaymentMethod(paymentMethod)"
+                                            t-att-class="{
+                                                'highlight': state.paymentMethod.id == paymentMethod.id
+                                            }">
+                                            <t t-esc="paymentMethod.name" />
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                            <textarea name="reference" t-model="state.reference" placeholder="Reference"></textarea>
+                            <span t-if="state.isError" class="error-message">
+                                <t t-esc="state.errorMessage" />
+                            </span>
+                        </div>
+                    </main>
+                    <footer class="footer cash-move">
+                        <button class="button confirm disable highlight dynamic-size"
+                            t-on-click="confirm">
+                            Confirm <span t-esc="env.pos.format_currency(state.parsedAmount)"/>
+                        </button>
+                        <div class="button cancel" t-on-click="cancel">
+                            <t t-esc="props.cancelText" />
+                        </div>
+                    </footer>
+                </div>
+    </t>
+
+</templates>

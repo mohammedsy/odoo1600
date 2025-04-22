@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="PaymentsScreen" owl="1">
+        <div class="ticket-screen screen" t-att-class="{ oe_hidden: !props.isShown }">
+            <div class="screen-full-width">
+                <div class="rightpane pane-border">
+                    <div class="controls">
+                        <t t-if="!env.isMobile || !state.showSearchBar">
+                            <div class="buttons">
+                                <button class="discard"  t-on-click="() => this.showScreen('ProductScreen')">
+                                    <span class="search-icon">
+                                        <i class="fa fa-angle-double-left"/>
+                                    </span>
+                                    <t t-if="!env.isMobile">
+                                        Back
+                                    </t>
+                                </button>
+                                <button class="highlight" t-on-click="() => this.trigger('create-new-payment')">New Payment</button>
+                            </div>
+                        </t>
+                        <t t-if="env.isMobile">
+                            <t t-if="state.showSearchBar">
+                                <button class="arrow-left" t-on-click="() => { state.showSearchBar = !state.showSearchBar }">
+                                    <span class="search-icon">
+                                        <i class="fa fa-angle-double-left"/>
+                                    </span>
+                                </button>
+                            </t>
+                            <t t-else="">
+                                <button class="search" t-on-click="() => { state.showSearchBar = !state.showSearchBar }">
+                                    <span class="search-icon">
+                                        <i class="fa fa-search"/>
+                                    </span>
+                                </button>
+                            </t>
+                        </t>
+                        <SearchBar t-if="state.showSearchBar" config="getSearchBarConfig()" placeholder="constructor.searchPlaceholder" />
+                        <div t-if="shouldShowPageControls()" class="item">
+                            <div class="page-controls">
+                                <div class="previous" t-on-click="() => this.trigger('prev-page')">
+                                    <i class="fa fa-fw fa-caret-left" role="img" aria-label="Previous Payment List" title="Previous Payment List"></i>
+                                </div>
+                                <div class="next" t-on-click="() => this.trigger('next-page')">
+                                    <i class="fa fa-fw fa-caret-right" role="img" aria-label="Next Payment List" title="Next Payment List"></i>
+                                </div>
+                            </div>
+                            <div class="page">
+                                <span><t t-esc="getPageNumber()" /></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="orders">
+                        <t t-set="paymentList" t-value="getPaymentList()" />
+                        <t t-if="paymentList.length !== 0">
+                            <div class="header-row" t-att-class="{ oe_hidden: env.isMobile }">
+                                <div class="col">Customer</div>
+                                <div class="col wide">Reference</div>
+                                <div class="col wide">Payment Number</div>
+                                <div class="col wide">Date</div>
+                                <div class="col end">Amount</div>
+                                <div class="col end">Payment Method</div>
+                                <div class="col">Cashier</div>
+                                <div class="col narrow">Print</div>
+                            </div>
+                            <t t-foreach="paymentList" t-as="payment" t-key="payment.cid">
+                                <div class="order-row" t-on-click="() => this.trigger('click-payment', payment)"
+                                    t-att-class="{
+                                        'highlight': isHighlighted(payment)
+                                    }"
+                                   >
+                                    <div class="col">
+                                        <div t-if="env.isMobile">Customer</div>
+                                        <div><t t-esc="getPartner(payment)"></t></div>
+                                    </div>
+                                    <div class="col wide">
+                                        <div t-if="env.isMobile">Reference</div>
+                                        <div><t t-esc="payment.pos_session"></t></div>
+                                    </div>
+                                    <div class="col wide">
+                                        <div t-if="env.isMobile">Payment Number</div>
+                                        <div><t t-esc="payment.name"></t></div>
+                                    </div>
+                                    <div class="col wide">
+                                        <div t-if="env.isMobile">Date</div>
+                                        <div><t t-esc="getDate(payment)"></t></div>
+                                    </div>
+                                    <div class="col end">
+                                        <div t-if="env.isMobile">Amount</div>
+                                        <div><t t-esc="getAmount(payment)"></t></div>
+                                    </div>
+                                    <div class="col end">
+                                        <div t-if="env.isMobile">Payment Method</div>
+                                        <div><t t-esc="payment.pos_payment_method"></t></div>
+                                    </div>
+                                    <div class="col">
+                                        <div t-if="env.isMobile">Cashier</div>
+                                        <div><t t-esc="payment.cashier"></t></div>
+                                    </div>
+                                    <div class="col narrow" t-on-click="() => this.trigger('print-payment', payment)">
+                                        <t t-if="env.isMobile"> Print</t>
+                                        <div><i class="fa fa-print" aria-hidden="true"/></div>
+                                    </div>
+                                </div>
+                            </t>
+                        </t>
+                        <t t-else="">
+                            <div class="empty-order-list">
+                                <i role="img" aria-label="Shopping cart" title="Shopping cart" class="fa fa-shopping-cart"></i>
+                                <h1>No payments found</h1>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

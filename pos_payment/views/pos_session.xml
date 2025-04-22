@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="inherit_view_pos_session_form" model="ir.ui.view">
+        <field name="name">inherit.view.pos.session.form</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_form"/>
+        <field name="arch" type="xml">
+             <div name="button_box" position="inside">
+                <button name="action_show_customer_payments_list"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-dollar"
+                >
+                    <field name="total_customer_payments_amount" widget="statinfo" string="Customer Payments"/>
+                </button>
+            </div>
+        </field>
+    </record>
+
+</odoo>

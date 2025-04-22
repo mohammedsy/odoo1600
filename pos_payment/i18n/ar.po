@@ -1,0 +1,628 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_payment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0-20240711\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-06 20:56+0000\n"
+"PO-Revision-Date: 2024-09-07 00:01+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Generator: Poedit 3.5\n"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#, python-format
+msgid "-------- Customer Info --------"
+msgstr "-------- معلومات العميل --------"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#, python-format
+msgid "-------- Payment Amount --------"
+msgstr "-------- تفاصيل الدفعة --------"
+
+#. module: pos_payment
+#: model_terms:ir.ui.view,arch_db:pos_payment.pos_session_payments_report_template
+#: model_terms:ir.ui.view,arch_db:pos_payment.wizard_payments_report_template
+msgid "<span>Amount</span>"
+msgstr "<span>المبلغ</span>"
+
+#. module: pos_payment
+#: model_terms:ir.ui.view,arch_db:pos_payment.pos_session_payments_report_template
+#: model_terms:ir.ui.view,arch_db:pos_payment.wizard_payments_report_template
+msgid "<span>Cashier</span>"
+msgstr "<span>الكاشير</span>"
+
+#. module: pos_payment
+#: model_terms:ir.ui.view,arch_db:pos_payment.pos_session_payments_report_template
+#: model_terms:ir.ui.view,arch_db:pos_payment.wizard_payments_report_template
+msgid "<span>Payment Method</span>"
+msgstr "<span>وسيلة الدفع</span>"
+
+#. module: pos_payment
+#: model_terms:ir.ui.view,arch_db:pos_payment.pos_session_payments_report_template
+#: model_terms:ir.ui.view,arch_db:pos_payment.wizard_payments_report_template
+msgid "<span>Session Balances Report</span>"
+msgstr "<span>تقرير أرصدة الجلسة</span>"
+
+#. module: pos_payment
+#: model_terms:ir.ui.view,arch_db:pos_payment.pos_session_payments_report_template
+#: model_terms:ir.ui.view,arch_db:pos_payment.wizard_payments_report_template
+msgid "<span>Total</span>"
+msgstr "<span>الاجمالي</span>"
+
+#. module: pos_payment
+#: model_terms:ir.ui.view,arch_db:pos_payment.wizard_payments_report_template
+msgid ""
+"<strong>End Date </strong>\n"
+"                                    <span> : </span>"
+msgstr ""
+"<strong>تاريخ الاغلاق </strong>\n"
+"                                    <span> : </span>"
+
+#. module: pos_payment
+#: model_terms:ir.ui.view,arch_db:pos_payment.pos_session_payments_report_template
+msgid ""
+"<strong>End Date </strong>\n"
+"                                <span> : </span>"
+msgstr ""
+"<strong>تاريخ الاغلاق </strong>\n"
+"                                <span> : </span>"
+
+#. module: pos_payment
+#: model_terms:ir.ui.view,arch_db:pos_payment.pos_session_payments_report_template
+msgid ""
+"<strong>Session </strong>\n"
+"                                <span> : </span>"
+msgstr ""
+"<strong>الجلسة </strong>\n"
+"                                <span> : </span>"
+
+#. module: pos_payment
+#: model_terms:ir.ui.view,arch_db:pos_payment.wizard_payments_report_template
+msgid ""
+"<strong>Start Date</strong>\n"
+"                                    <span> : </span>"
+msgstr ""
+"<strong>تاريخ البدء</strong>\n"
+"                                    <span> : </span>"
+
+#. module: pos_payment
+#: model_terms:ir.ui.view,arch_db:pos_payment.pos_session_payments_report_template
+msgid ""
+"<strong>Start Date</strong>\n"
+"                                <span> : </span>"
+msgstr ""
+"<strong>تاريخ البدء</strong>\n"
+"                                <span> : </span>"
+
+#. module: pos_payment
+#: model_terms:ir.ui.view,arch_db:pos_payment.wizard_payments_report_template
+msgid ""
+"<strong>Total </strong>\n"
+"                                <span> : </span>"
+msgstr ""
+"<strong>الإجمالي </strong>\n"
+"                                <span> : </span>"
+
+#. module: pos_payment
+#: model_terms:ir.ui.view,arch_db:pos_payment.pos_session_payments_report_template
+msgid ""
+"<strong>Total </strong>\n"
+"                            <span> : </span>"
+msgstr ""
+"<strong>الاجمالي </strong>\n"
+"                            <span> : </span>"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/js/PaymentsScreen/PaymentsScreen.js:0
+#, python-format
+msgid "All"
+msgstr "الكل"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentsScreen.xml:0
+#: code:addons/pos_payment/static/src/xml/SessionBalancesReceipt/SessionBalancesReceipt.xml:0
+#, python-format
+msgid "Amount"
+msgstr "المبلغ"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#, python-format
+msgid "Amount:"
+msgstr "المبلغ:"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentsScreen.xml:0
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PrintPaymentScreen.xml:0
+#: code:addons/pos_payment/static/src/xml/SessionBalancesReceipt/PrintSessionBalancesScreen.xml:0
+#, python-format
+msgid "Back"
+msgstr "عودة"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#: code:addons/pos_payment/static/src/xml/SessionBalancesReceipt/SessionBalancesReceipt.xml:0
+#, python-format
+msgid "CN"
+msgstr "رقم السجل التجاري"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/js/ProductScreen/PaymentPopup.js:0
+#: model_terms:ir.ui.view,arch_db:pos_payment.view_payment_report_wizard_form
+#, python-format
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentsScreen.xml:0
+#: model:ir.model.fields,field_description:pos_payment.field_account_payment__employee_id
+#: model_terms:ir.ui.view,arch_db:pos_payment.inherit_account_view_account_payment_form
+#: model_terms:ir.ui.view,arch_db:pos_payment.inherit_account_view_account_payment_tree
+#, python-format
+msgid "Cashier"
+msgstr "الكاشير"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#: code:addons/pos_payment/static/src/xml/SessionBalancesReceipt/SessionBalancesReceipt.xml:0
+#, python-format
+msgid "City"
+msgstr "المدينة"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/ProductScreen/PaymentPopup.xml:0
+#, python-format
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#: code:addons/pos_payment/static/src/xml/SessionBalancesReceipt/SessionBalancesReceipt.xml:0
+#, python-format
+msgid "Country"
+msgstr "الدولة"
+
+#. module: pos_payment
+#: model:ir.model.fields,field_description:pos_payment.field_payment_report_wizard__create_uid
+msgid "Created by"
+msgstr "إنشئ بواسطة"
+
+#. module: pos_payment
+#: model:ir.model.fields,field_description:pos_payment.field_payment_report_wizard__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/js/PaymentsScreen/PaymentsScreen.js:0
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentsScreen.xml:0
+#: code:addons/pos_payment/static/src/xml/ProductScreen/PaymentPopup.xml:0
+#, python-format
+msgid "Customer"
+msgstr "العميل"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/ProductScreen/PaymentPopup.xml:0
+#, python-format
+msgid "Customer Payment"
+msgstr "دفعة العميل"
+
+#. module: pos_payment
+#. odoo-python
+#: code:addons/pos_payment/models/pos_session.py:0
+#: model_terms:ir.ui.view,arch_db:pos_payment.inherit_view_pos_session_form
+#, python-format
+msgid "Customer Payments"
+msgstr "دفعات العملاء"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/js/PaymentsScreen/PaymentsScreen.js:0
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentsScreen.xml:0
+#, python-format
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#, python-format
+msgid "Date:"
+msgstr "التاريخ:"
+
+#. module: pos_payment
+#: model:ir.model.fields,field_description:pos_payment.field_payment_report_wizard__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#: code:addons/pos_payment/static/src/xml/SessionBalancesReceipt/SessionBalancesReceipt.xml:0
+#, python-format
+msgid "District"
+msgstr "الحي"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/js/PaymentsScreen/PrintPaymentScreen.js:0
+#: code:addons/pos_payment/static/src/js/SessionBalancesReceipt/PrintSessionBalancesScreen.js:0
+#, python-format
+msgid "Do you want to print using the web printer?"
+msgstr "هل تريد الطباعة باستخدام طابعة الويب؟"
+
+#. module: pos_payment
+#: model:ir.model.fields,field_description:pos_payment.field_payment_report_wizard__employee_ids
+msgid "Employees"
+msgstr "الموظفين"
+
+#. module: pos_payment
+#: model:ir.model.fields,field_description:pos_payment.field_payment_report_wizard__filter_by
+msgid "Filter By"
+msgstr "تصفية باستخدام"
+
+#. module: pos_payment
+#: model:ir.model.fields,field_description:pos_payment.field_payment_report_wizard__date_from
+msgid "From Date"
+msgstr "من تاريخ"
+
+#. module: pos_payment
+#: model_terms:ir.ui.view,arch_db:pos_payment.view_payment_report_wizard_form
+msgid "Generate Payment Report"
+msgstr "إنشاء تقرير المدفوعات"
+
+#. module: pos_payment
+#: model:ir.model.fields,field_description:pos_payment.field_payment_report_wizard__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: pos_payment
+#: model:ir.model.fields,field_description:pos_payment.field_account_payment__is_pos_payment
+msgid "Is Pos Payment"
+msgstr "دفعة من نقاط البيع"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#, python-format
+msgid "Label:"
+msgstr "البيان:"
+
+#. module: pos_payment
+#: model:ir.model.fields,field_description:pos_payment.field_payment_report_wizard____last_update
+msgid "Last Modified on"
+msgstr "اخر تحديث في"
+
+#. module: pos_payment
+#: model:ir.model.fields,field_description:pos_payment.field_payment_report_wizard__write_uid
+msgid "Last Updated by"
+msgstr "اخر تحديث بواسطة"
+
+#. module: pos_payment
+#: model:ir.model.fields,field_description:pos_payment.field_payment_report_wizard__write_date
+msgid "Last Updated on"
+msgstr "اخر تحديث في"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#: code:addons/pos_payment/static/src/xml/SessionBalancesReceipt/SessionBalancesReceipt.xml:0
+#, python-format
+msgid "Logo"
+msgstr "الشعار"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#: code:addons/pos_payment/static/src/xml/SessionBalancesReceipt/SessionBalancesReceipt.xml:0
+#, python-format
+msgid "Mobile"
+msgstr "الجوال"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#, python-format
+msgid "Name:"
+msgstr "الاسم:"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentsScreen.xml:0
+#, python-format
+msgid "New Payment"
+msgstr "دفعة جديدة"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentsScreen.xml:0
+#, python-format
+msgid "Next Payment List"
+msgstr "القائمة التالية للدفعات"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentsScreen.xml:0
+#, python-format
+msgid "No payments found"
+msgstr "لا توجد دفعات"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#, python-format
+msgid "No.:"
+msgstr "الرقم:"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/SessionBalancesReceipt/SessionBalancesReceipt.xml:0
+#, python-format
+msgid "Opened at:"
+msgstr "تاريخ الفتح:"
+
+#. module: pos_payment
+#: model:ir.model.fields,field_description:pos_payment.field_account_payment__pos_session_id
+msgid "POS Session"
+msgstr "جلسة نقطة البيع"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/js/ProductScreen/PaymentPopup.js:0
+#, python-format
+msgid "Payment"
+msgstr "الدفعة"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentsScreen.xml:0
+#: code:addons/pos_payment/static/src/xml/ProductScreen/PaymentPopup.xml:0
+#: code:addons/pos_payment/static/src/xml/SessionBalancesReceipt/SessionBalancesReceipt.xml:0
+#, python-format
+msgid "Payment Method"
+msgstr "وسيلة الدفع"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#, python-format
+msgid "Payment Method:"
+msgstr "وسيلة الدفع:"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/js/PaymentsScreen/PaymentsScreen.js:0
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentsScreen.xml:0
+#, python-format
+msgid "Payment Number"
+msgstr "رقم السند"
+
+#. module: pos_payment
+#: model:ir.model,name:pos_payment.model_payment_report_wizard
+msgid "Payment Report Wizard"
+msgstr "تقرير الدفعات"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#, python-format
+msgid "Payment Voucher"
+msgstr "سندات القبض"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/HeaderPaymentsButton.xml:0
+#: model:ir.model,name:pos_payment.model_account_payment
+#, python-format
+msgid "Payments"
+msgstr "الدفعات"
+
+#. module: pos_payment
+#: model:ir.actions.act_window,name:pos_payment.action_payment_report_wizard
+#: model:ir.actions.report,name:pos_payment.pos_session_payments_report_action
+#: model:ir.actions.report,name:pos_payment.wizard_payments_report_action
+#: model:ir.ui.menu,name:pos_payment.menu_payment_report_wizard
+msgid "Payments Report"
+msgstr "تقرير الدفعات"
+
+#. module: pos_payment
+#: model:ir.model.fields.selection,name:pos_payment.selection__payment_report_wizard__filter_by__period
+msgid "Period"
+msgstr "الفترة"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#: code:addons/pos_payment/static/src/xml/SessionBalancesReceipt/SessionBalancesReceipt.xml:0
+#, python-format
+msgid "Phone"
+msgstr "الهاتف"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#, python-format
+msgid "Phone:"
+msgstr "الهاتف:"
+
+#. module: pos_payment
+#: model:ir.model,name:pos_payment.model_pos_session
+msgid "Point of Sale Session"
+msgstr "جلسة نقطة البيع"
+
+#. module: pos_payment
+#. odoo-python
+#: code:addons/pos_payment/models/pos_session.py:0
+#: code:addons/pos_payment/wizard/payments_report_wizard.py:0
+#, python-format
+msgid "Point of sale Payments"
+msgstr "مدفوعات نقاط البيع"
+
+#. module: pos_payment
+#: model_terms:ir.ui.view,arch_db:pos_payment.inherit_account_view_account_payment_form
+msgid "Pos Payment"
+msgstr "دفعة من نقاط البيع"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentsScreen.xml:0
+#, python-format
+msgid "Previous Payment List"
+msgstr "قائمة الدفعات السابقة"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentsScreen.xml:0
+#: model_terms:ir.ui.view,arch_db:pos_payment.view_payment_report_wizard_form
+#, python-format
+msgid "Print"
+msgstr "طباعة"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PrintPaymentScreen.xml:0
+#, python-format
+msgid "Print Payment"
+msgstr "طباعة الدفعة"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/SessionBalancesReceipt/PrintSessionBalancesScreen.xml:0
+#, python-format
+msgid "Print Session Balances Receipt"
+msgstr "طباعة أرصدة الجلسة"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/SessionBalancesReceipt/SessionBalancesReceipt.xml:0
+#, python-format
+msgid "Print date:"
+msgstr "تاريخ الطباعة:"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentsScreen.xml:0
+#: code:addons/pos_payment/static/src/xml/ProductScreen/PaymentPopup.xml:0
+#, python-format
+msgid "Reference"
+msgstr "البيان"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/js/PaymentsScreen/PaymentsScreen.js:0
+#, python-format
+msgid "Search Payments..."
+msgstr "البحث بالدفعة..."
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/js/PaymentsScreen/PaymentsScreen.js:0
+#, python-format
+msgid "Session"
+msgstr "الجلسة"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/SessionBalancesReceipt/SessionBalancesReceipt.xml:0
+#, python-format
+msgid "Session Balances Receipt"
+msgstr "ميزانية أرصدة الجلسة"
+
+#. module: pos_payment
+#: model:ir.model.fields,field_description:pos_payment.field_payment_report_wizard__session_ids
+#: model:ir.model.fields.selection,name:pos_payment.selection__payment_report_wizard__filter_by__session
+msgid "Sessions"
+msgstr "الجلسات"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentsScreen.xml:0
+#, python-format
+msgid "Shopping cart"
+msgstr "الطلبية"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#: code:addons/pos_payment/static/src/xml/SessionBalancesReceipt/SessionBalancesReceipt.xml:0
+#, python-format
+msgid "Street"
+msgstr "الشارع"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/js/PaymentsScreen/PaymentsScreen.js:0
+#, python-format
+msgid "Successfully register payment (%s) with amount %s."
+msgstr "تم تسجيل الدفعة بنجاح (%s) بمبلغ وقدرة %s."
+
+#. module: pos_payment
+#: model:ir.model.fields,field_description:pos_payment.field_payment_report_wizard__date_to
+msgid "To Date"
+msgstr "إلي تاريخ"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/SessionBalancesReceipt/SessionBalancesReceipt.xml:0
+#, python-format
+msgid "Total"
+msgstr "الاجمالي"
+
+#. module: pos_payment
+#: model:ir.model.fields,field_description:pos_payment.field_pos_session__total_customer_payments_amount
+msgid "Total Payments Amount"
+msgstr "إجمالي مبلغ الدفعة"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/SessionBalancesReceipt/SessionBalancesReceipt.xml:0
+#, python-format
+msgid "Total:"
+msgstr "الإجمالي:"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#: code:addons/pos_payment/static/src/xml/SessionBalancesReceipt/SessionBalancesReceipt.xml:0
+#, python-format
+msgid "Vat"
+msgstr "الرقم الضريبي"
+
+#. module: pos_payment
+#. odoo-python
+#: code:addons/pos_payment/models/pos_session.py:0
+#: code:addons/pos_payment/wizard/payments_report_wizard.py:0
+#, python-format
+msgid "Voucher Receipts"
+msgstr "سندات القبض"
+
+#. module: pos_payment
+#. odoo-javascript
+#: code:addons/pos_payment/static/src/xml/PaymentsScreen/PaymentReceipt.xml:0
+#: code:addons/pos_payment/static/src/xml/SessionBalancesReceipt/SessionBalancesReceipt.xml:0
+#, python-format
+msgid "Zip"
+msgstr "الرمز البريدي"

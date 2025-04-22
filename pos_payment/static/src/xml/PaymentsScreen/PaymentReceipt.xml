@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="PaymentReceipt" owl="1">
+        <div class="pos-receipt">
+            <t t-if="receipt.company.logo">
+                <img class="pos-receipt-logo" t-att-src="receipt.company.logo" alt="Logo"/>
+                <br/>
+            </t>
+            <div class="pos-receipt-contact">
+                <strong><t t-esc="receipt.company.name" /></strong>
+                <div>
+                    <t t-if="receipt.company.street">
+                        <span>
+                            <strong>Street</strong>
+                            <span>: </span>
+                            <t t-esc="receipt.company.street" />
+                        </span>,
+                    </t>
+                    <t t-if="receipt.company.street2">
+                        <span>
+                            <strong>District</strong>
+                            <span>: </span>
+                            <t t-esc="receipt.company.street2" />
+                        </span>,
+                    </t>
+                    <t t-if="receipt.company.city">
+                        <span>
+                            <strong>City</strong>
+                            <span>: </span>
+                            <t t-esc="receipt.company.city" />
+                        </span>,
+                    </t>
+                    <t t-if="receipt.company.country">
+                        <span>
+                            <strong>Country</strong>
+                            <span>: </span>
+                            <t t-esc="receipt.company.country" />
+                        </span>,
+                    </t>
+                    <t t-if="receipt.company.zip">
+                        <span>
+                            <strong>Zip</strong>
+                            <span>: </span>
+                            <t t-esc="receipt.company.zip" />
+                        </span>
+                    </t>
+                </div>
+                <div>
+                    <t t-if="receipt.company.phone">
+                        <span>
+                            <strong>Phone</strong>
+                            <span>: </span>
+                            <t t-esc="receipt.company.phone" />
+                        </span>,
+                    </t>
+                    <t t-if="receipt.company.mobile">
+                        <span>
+                            <strong>Mobile</strong>
+                            <span>: </span>
+                            <t t-esc="receipt.company.mobile" />
+                        </span>
+                    </t>
+                </div>
+                <t t-if="receipt.company.registry">
+                    <div>
+                        <strong>CN</strong>
+                        <span>: </span>
+                        <t t-esc="receipt.company.registry" />
+                    </div>
+                </t>
+                <t t-if="receipt.company.vat">
+                    <div>
+                        <strong>Vat</strong>
+                        <span>: </span>
+                        <t t-esc="receipt.company.vat" />
+                    </div>
+                </t>
+            </div>
+
+            <div class="pos-receipt-title payment-receipt-title receipt-my-1">
+                <strong>
+                    Payment Voucher
+                </strong>
+            </div>
+            <div class="receipt-block receipt-my-1">
+                <div class="cashier receipt-my-1">
+                    <strong class="pos-receipt-left-align">
+                        No.:
+                    </strong>
+                    <span class="pos-receipt-right-align" t-esc="receipt.name" />
+                </div>
+                <div class="cashier receipt-my-1">
+                    <strong class="pos-receipt-left-align">
+                        Date:
+                    </strong>
+                    <span class="pos-receipt-right-align" t-esc="receipt.date" />
+                </div>
+            </div>
+
+
+            <div class="pos-receipt-customer receipt-my-1">
+                <div class="pos-receipt-title receipt-my-1">
+                    <strong> -------- Customer Info -------- </strong>
+                </div>
+                <div class="customer-info receipt-block receipt-my-1">
+                    <div class="cashier receipt-my-1">
+                        <strong class="pos-receipt-left-align">
+                            Name:
+                        </strong>
+                        <span class="pos-receipt-right-align" t-esc="receipt.partner.name" />
+                    </div>
+                    <!-- <t t-if="receipt.partner.contact_address">
+                        <div class="cashier receipt-my-1" >
+                            <strong class="pos-receipt-left-align">Address: </strong> <span class="pos-receipt-right-align" t-esc="receipt.partner.contact_address" />
+                        </div>
+                    </t> -->
+                    <t t-if="receipt.partner.phone">
+                        <div class="cashier receipt-my-1">
+                            <strong class="pos-receipt-left-align">Phone: </strong> <span class="pos-receipt-right-align" t-esc="receipt.partner.phone" />
+                        </div>
+                    </t>
+
+                </div>
+            </div>
+            <div class="pos-receipt-payment-amount">
+                <div class="pos-receipt-title receipt-my-1">
+                    <strong> -------- Payment Amount -------- </strong>
+                </div>
+                <div class="receipt-payment-method receipt-block receipt-my-1 ">
+                    <strong class="pos-receipt-left-align">
+                        Amount:
+                    </strong>
+                    <strong t-esc="env.pos.format_currency(receipt.amount)" class="pos-receipt-right-align"/>
+                </div>
+                <div class="receipt-payment-method receipt-block receipt-my-1 ">
+                    <strong class="pos-receipt-left-align">
+                        Payment Method:
+                    </strong>
+                    <strong t-esc="receipt.paymentMethod" class="pos-receipt-right-align"/>
+                </div>
+            </div>
+            <div t-if="receipt.ref" class="pos-receipt-reference receipt-block receipt-my-1">
+                <strong class="pos-receipt-left-align">
+                    Label:
+                </strong>
+                <span class="pos-receipt-right-align" t-esc="receipt.ref" />
+            </div>
+            <div style="text-align: center;">
+                <span t-if="receipt.cashier" t-esc="receipt.cashier" />
+                <img t-if="receipt.img_barcode" t-att-src="receipt.img_barcode" style="display: block; margin: 0 auto;" />
+            </div>
+        </div>
+    </t>
+
+</templates>

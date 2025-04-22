@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="SessionBalancesReceipt" owl="1">
+        <div class="pos-receipt">
+             <!-- Company Logo -->
+             <t t-if="company.logo">
+                <img class="pos-receipt-logo" t-att-src="company.logo" alt="Logo"/>
+                <br/>
+            </t>
+
+            <!-- Company Information -->
+            <div class="pos-receipt-contact">
+                <strong class="pos-receipt-center-align"><t t-esc="company.name" /></strong>
+                <div>
+                    <t t-if="company.street">
+                        <span>
+                            <strong>Street</strong>
+                            <span>: </span>
+                            <t t-esc="company.street" />
+                        </span>,
+                    </t>
+                    <t t-if="company.street2">
+                        <span>
+                            <strong>District</strong>
+                            <span>: </span>
+                            <t t-esc="company.street2" />
+                        </span>,
+                    </t>
+                    <t t-if="company.city">
+                        <span>
+                            <strong>City</strong>
+                            <span>: </span>
+                            <t t-esc="company.city" />
+                        </span>,
+                    </t>
+                    <t t-if="company.country">
+                        <span>
+                            <strong>Country</strong>
+                            <span>: </span>
+                            <t t-esc="company.country" />
+                        </span>,
+                    </t>
+                    <t t-if="company.zip">
+                        <span>
+                            <strong>Zip</strong>
+                            <span>: </span>
+                            <t t-esc="company.zip" />
+                        </span>
+                    </t>
+                </div>
+                <div>
+                    <t t-if="company.phone">
+                        <span>
+                            <strong>Phone</strong>
+                            <span>: </span>
+                            <t t-esc="company.phone" />
+                        </span>,
+                    </t>
+                    <t t-if="company.mobile">
+                        <span>
+                            <strong>Mobile</strong>
+                            <span>: </span>
+                            <t t-esc="company.mobile" />
+                        </span>
+                    </t>
+                </div>
+                <t t-if="company.registry">
+                    <div>
+                        <strong>CN</strong>
+                        <span>: </span>
+                        <t t-esc="company.registry" />
+                    </div>
+                </t>
+                <t t-if="company.vat">
+                    <div>
+                        <strong>Vat</strong>
+                        <span>: </span>
+                        <t t-esc="company.vat" />
+                    </div>
+                </t>
+            </div>
+
+            <!-- Receipt Title -->
+            <div class="custom-receipt-title">
+                <strong>Session Balances Receipt</strong>
+            </div>
+
+            <!-- Session Information -->
+            <div class="receipt-cashier-session">
+                <strong t-esc="session.name"/>
+                <span> | </span>
+                <strong t-esc="cashier"/>
+            </div>
+            <div class="receipt-cashier-session">
+                Opened at: <span t-esc="start_at"/>
+            </div>
+
+            <!-- Payment details and report -->
+            <t t-set="report_total" t-value="0"/>
+            <t t-foreach="props.receipt" t-as="table" t-key="table_index">
+                <t t-if="table.total">
+                    <h4 class="table-title"><t t-esc="table.title" /></h4>
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Payment Method</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="table_total" t-value="0"/>
+                            <t t-foreach="table.payments" t-as="payment" t-key="payment_index">
+                                <tr>
+                                    <td><t t-esc="payment.method" /></td>
+                                    <td><t t-esc="env.pos.format_currency(payment.amount)" /></td>
+                                </tr>
+                                <t t-set="table_total" t-value="table_total + payment.amount"/>
+                            </t>
+                            <tr>
+                                <th>Total</th>
+                                <th><t t-esc="env.pos.format_currency(table_total)" /></th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <t t-set="report_total" t-value="table_total + report_total"/>
+                </t>
+            </t>
+
+            <!-- Final Total -->
+            <div class="custom-total">
+                <strong>Total:</strong> <span t-esc="env.pos.format_currency(report_total)" />
+            </div>
+
+            <!-- Print Date -->
+            <div class="custom-print-date">
+                Print date: <span t-esc="printDate"/>
+            </div>
+        </div>
+    </t>
+</templates>
