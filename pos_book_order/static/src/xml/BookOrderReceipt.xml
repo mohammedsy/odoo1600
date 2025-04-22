@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="BookOrderReceipt">
+        <div style="width:80mm; font-size:12px; font-family:'Courier New', monospace; text-align:center;">
+            <h3 style="margin:0;">إيصال حجز</h3>
+            <hr/>
+            <div style="text-align:right; direction:rtl;">
+                <p><strong>رقم الحجز:</strong> <t t-esc="order['name']"/></p>
+                <div id="barcode"></div>
+                <p><strong>تاريخ ووقت الحجز:</strong> <t t-esc="order.date"/></p>
+
+                <p><strong>الجوال:</strong> <t t-esc="order.phone"/></p>
+                <p><strong>ملاحظة:</strong> <t t-esc="order.note"/></p>
+            </div>
+            <hr/>
+            <div style="text-align:right; direction:rtl;">
+                <h4 style="margin:0;">تفاصيل المنتجات:</h4>
+<table style="width:100%; border-collapse: collapse; direction: rtl; font-size:12px;">
+    <thead>
+        <tr>
+            <th style="border:1px solid #000; padding:3px; text-align:center;">الصنف</th>
+            <th style="border:1px solid #000; padding:3px; text-align:center;">الكمية</th>
+            <th style="border:1px solid #000; padding:3px; text-align:center;">السعر</th>
+        </tr>
+    </thead>
+    <tbody>
+        <t t-foreach="order.products" t-as="product">
+            <tr>
+                <td style="border:1px solid #000; padding:3px; text-align:center;">
+                    <t t-esc="product.name"/>
+                </td>
+                <td style="border:1px solid #000; padding:3px; text-align:center;">
+                    <t t-esc="product.qty"/>
+                </td>
+                <td style="border:1px solid #000; padding:3px; text-align:center;">
+                    <t t-esc="product.price"/>
+                </td>
+            </tr>
+        </t>
+    </tbody>
+</table>
+<hr/>
+
+                <p><strong>الإجمالي:</strong> <t t-esc="order.total"/> ريال</p>
+            </div>
+            <hr/>
+            <p>شكراً لتعاملكم معنا</p>
+        </div>
+    </t>
+</templates>
